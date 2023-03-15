@@ -26,13 +26,13 @@ describe('brands api tests', () => {
         cy
             .request('POST', 'https://api.practicesoftwaretesting.com/users/login', credentialsPayload)
             .then((postResponse) => {
-                const token = postResponse.body.access_token;
+                const accessToken = postResponse.body.access_token;
                 cy
                     .request({
                         method: 'GET',
                         url: 'https://api.practicesoftwaretesting.com/invoices',
                         headers: { 
-                            'Authorization': `Bearer ${token}` 
+                            'Authorization': `Bearer ${accessToken}` 
                         }})
                     .then((getResponse) => {
                         expect(getResponse.body.total).to.be.eq(7);
